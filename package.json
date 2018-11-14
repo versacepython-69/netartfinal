@@ -1,0 +1,27 @@
+{
+  "name": "basic-template",
+  "version": "1.0.0",
+  "description": "a basic web server/client template",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/net-art-and-cultures/final.git"
+  },
+  "author": "Nick Briz <nickbriz@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/net-art-and-cultures/final/issues"
+  },
+  "homepage": "https://github.com/net-art-and-cultures/final#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
+  }
+}
