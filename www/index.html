@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title> Example Page </title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>3d data vis</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
 
-        <section>
+        <script>
+        let scene = new THREE.Scene()
+        let camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
 
-            <img src="images/unicorn-cat.png" alt="unicorn-cat" id="cat-pic">
+        let renderer = new THREE.WebGLRenderer()
 
-            <h1>This is an Example Page</h1>
-
-            <p>
-                this is an example HTML page, it includes a sample CSS style
-                sheet as well as a sample js file. the js file includes some of
-                the DOM functionality we went over in class. for example, click
-                the cat image above.
-            </p>
-
-        </section>
-        <script src="js/main.js"></script>
+    renderer.setSize( window.innerWidth, window.innerHeight )
+    document.body.appendChild( renderer.domElement )
+		</script>
 
     </body>
 </html>

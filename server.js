@@ -3,6 +3,9 @@
 // see the README.md file in the root directory of this repo for instructions
 const express = require('express')
 
+const THREE = require('three')
+const scene = new THREE.Scene()
+
 
 const request = require('request');
 
