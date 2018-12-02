@@ -10,9 +10,14 @@
 	</head>
 	<body>
 		<script src="js/three.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/dev/examples/js/controls/TrackballControls.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="js/main.js"></script>
 
-        <script>
+    <!--    <script>
         let scene = new THREE.Scene()
+		//change camera position if model doesnt show up, if its out of view
         let camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
 
         let renderer = new THREE.WebGLRenderer()
@@ -21,20 +26,36 @@
     document.body.appendChild( renderer.domElement )
 
 		let geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    	let material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    	let cube = new THREE.Mesh( geometry, material );
+		//material visible or invisible based on data input, will also be in animate function
+    	let material =
+
+		//new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+		let cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
 
 camera.position.z = 5;
 
+		let count = 0
+
+		//info attatching api data to the animation would go in here
+
 		function animate() {
+			//if(count< 50){}
+
 			requestAnimationFrame( animate );
+
 			cube.rotation.x += 0.01;
 			cube.rotation.y += 0.01;
-	renderer.render( scene, camera );
-			}
-			animate();
-		</script>
+
+			renderer.render( scene, camera );
+
+			//count ++
+		}
+
+		animate();
+
+	</script>-->
 
     </body>
 </html>
