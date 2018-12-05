@@ -5,7 +5,7 @@
 const express = require('express');
 const request = require('request');
 const fs = require('fs');
-
+const { exec } = require('child_process');
 
 // here we call the express() function which returns a default express server
 // application. we assign it to a variable called 'app'
@@ -27,20 +27,19 @@ app.use( express.static(__dirname+'/www') )
 
 
 
-function newApiRequest(url, callback) {
-    const options = {
-        url: url,
-        method: 'GET',
-        headers: {
-            'x-api-key': 'da2uSnoiaI8ZRCqBKHHcjqBOcOnihn3wgKxVKpWO'
-        }
-    };
-
-    request(options, function(err, res, body) {
-        let json = JSON.parse(body);
-        console.log(json);
-        callback(json)
-    });
+function getWatsonData(text, callback) {
+  text = encodeURIComponent(text)
+  let apikey = 'kHNqXdZWxluLI3upgclMCRNapSmUWQaB95mAlZeIcCKZ'
+  let terminalCommand = `curl -X GET --user "apikey:${apikey}" / "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=${text}"`
+  exec(terminalCommand, (error, stdout, stderr)=> {
+    if (error){
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    // console.log(`stdout: ${stdout}`);
+    // console.log(`stderr: ${stderr}`);
+    callback(stdout)
+  })
 }
 
 
@@ -51,12 +50,11 @@ io.on('connection', function(socket){
 
     // here we're listening for 'enter-click' event from clients
     // event we made up and we emit on client side (index.html)
-    socket.on('apiReq', function(data){
+    socket.on('apiReq', function(text){
         // when we receive the event, pass the data from the client to all other connected clients using broadcast.emit.
         // let's emit an event called 'new-msg' which the clients are listening for.
         // socket.emit('new-msg',data)
-
-        newApiRequest(data, function(json){
+        getWatsonData(text, function(json){
             socket.emit('apiRes', json)
         })
 
