@@ -19,7 +19,8 @@
   "homepage": "https://github.com/net-art-and-cultures/final#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "ws": "3.3.2"
