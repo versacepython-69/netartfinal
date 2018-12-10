@@ -18,9 +18,13 @@ p {
     font-family: sans-serif;
 }
 
-#cat-pic {
-    display: block;
-    width: 200px;
-    margin: 0 auto;
-    cursor: pointer;
+#userText {
+  font-family:sans-serif;
+  font-size:50px;
+  color:#e40477;
+  width:400px;
+  position:absolute;
+  left: calc(50% - 200px);
+  top:50%;
+  z-index:2;
 }

@@ -92,10 +92,16 @@ function onWindowResize() {
     controls.handleResize();
 }
 
-// socket.addEventListener(){
-//     socket.emit('apiReq', 'https://api.propublica.org/congress/v1/115/senate/members.json')
-// //this goes inside event listener for text enter. wont need address, will need something like text recieved^^
-// }
+let userInput = document.querySelector('#userText')
+
+// now we're create an event listener that lisents to what we type into it
+userInput.addEventListener('keypress',function(e){
+	// open your console && then start typeing into the input field to see what happens (notice what get's logged when u hit the enter key)
+    if(e.key == "Enter"){
+   	// when the user hits enter, let's create a popup w/the current text value in the input field
+     alert( userInput.value )
+   }
+})
 
 socket.on('apiRes', function(json){
     //change color based on json recieved^^

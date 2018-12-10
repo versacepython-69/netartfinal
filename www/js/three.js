@@ -15,7 +15,7 @@
 	if ( Number.isInteger === undefined ) {
 
 		// Missing in IE
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+		// https://developer.mozilla.org/en-US/doc/Web/JavaScript/Reference/Global_Objects/Number/isInteger
 
 		Number.isInteger = function ( value ) {
 
