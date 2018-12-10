@@ -14,7 +14,7 @@ const app = express()
 // here we create a variable that will contain our port number, this is set
 // either in the terminal when we launch the app like: node server.js 3000
 // otherwise  defaults to port 80, which requires sudo, ex: sudo node server.js
-const port = process.argv[2] || 80
+const port = process.argv[2] || 3000
 
 const http = require('http').Server(app)
 
@@ -27,20 +27,52 @@ app.use( express.static(__dirname+'/www') )
 
 
 
-function getWatsonData(text, callback) {
-  text = encodeURIComponent(text)
-  let apikey = 'kHNqXdZWxluLI3upgclMCRNapSmUWQaB95mAlZeIcCKZ'
-  let terminalCommand = `curl -X GET --user "apikey:${apikey}" / "https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21&text=${text}"`
-  exec(terminalCommand, (error, stdout, stderr)=> {
-    if (error){
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
-    callback(`${stdout}`)
-  })
-}
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+// Require our config variables.
+//var config = require('./config');
+
+// The text that we want to analyze the tone of.
+//var text = "In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since. \“Whenever you feel like criticizing any one,\” he told me, \“just remember that all the people in this world haven’t had the advantages that you’ve had.\"";
+var text = "fuck you i want you to die";
+// Turn our text into valid json.
+var input = { "text": text };
+
+// The format that the tone analyzer needs.
+var params =
+        {
+        'tone_input': input,
+        'content_type': 'application/json'
+        };
+
+// Initialize the Tone Analyzer by giving it our credentials.
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+var toneAnalyzer = new ToneAnalyzerV3({
+  version: '2017-09-21',
+  iam_apikey: 'kHNqXdZWxluLI3upgclMCRNapSmUWQaB95mAlZeIcCKZ',
+  url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+});
+
+// Use our Tone Analyzer variable to analyze the tone.
+toneAnalyzer.tone(params, function(error, response)
+        {
+        // checking 4 error.
+        if (error)
+                {
+                console.log('Error:', error);
+                }
+        // No error, we get tone/result.
+        else
+                {
+                // tone of the text, as determined by watson.
+                var tone = JSON.stringify(response, null, 2)
+
+                // Output Watson's tone analysis to the console.
+                console.log("The tone analysis for \'" + text + "\' is:\n");
+                console.log(tone);
+                }
+        });
 
 
 // here we use socket.io to listen for connections from new clients
