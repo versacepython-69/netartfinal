@@ -36,9 +36,9 @@ function getWatsonData(text, callback) {
       console.error(`exec error: ${error}`);
       return;
     }
-    // console.log(`stdout: ${stdout}`);
-    // console.log(`stderr: ${stderr}`);
-    callback(stdout)
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+    callback(`${stdout}`)
   })
 }
 
