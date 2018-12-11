@@ -77,7 +77,6 @@ function init() {
 
 function animate() {
     requestAnimationFrame(animate);
-    controls.update();
 
 }
 
