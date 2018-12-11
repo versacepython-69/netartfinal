@@ -1,11 +1,4 @@
-
-
-
 const socket = io()
-
-//NEED  TO CHANGE const congressMem = json.results[0].congress;
-
-//NEED TO CHANGE console.log(congressMem);
 
 var camera, scene, renderer, mesh, material;
 init();
@@ -18,6 +11,8 @@ animate();
 //tentative();
 //render();
 onWindowResize();
+
+//^took out all unset mood functions for now
 
 
 //HOW DO I LINK THESE FUNCTIONS UP TO THE MOST REACTED TO EMOTION FROM TONE ANALYZER, THINK I NEED AND "IF THEN"
@@ -54,6 +49,8 @@ function init() {
     camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 1, 5000);
     camera.position.z = 50;
 
+    //^changed camera position as it was way off
+
 
     // Add controls I DONT KNOW THAT WE NEED THIS
     //controls = new THREE.TrackballControls( camera );
@@ -67,6 +64,8 @@ function init() {
     var material = new THREE.MeshLambertMaterial({color:0xf06d27});
     mesh  = new THREE.Mesh(geometry, material);
     scene.add( mesh )
+
+    //^resetting the ball shape with same angry color
 
     // Create ambient light and add to scene. I WANT TO CHANGE THIS WITH THE MOOD READER
     //var angryLight = new THREE.AmbientLight(0xbb6464); // reddish light
@@ -89,6 +88,7 @@ function animate() {
 //function render() {
 	//renderer.render(scene, camera);
 //}
+//^got rid of because the action of this function is what updates the screen and it wasnt doing that before, needed to be in animate function
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -104,7 +104,7 @@ userInput.addEventListener('keypress',function(e){
 	// open your console && then start typeing into the input field to see what happens (notice what get's logged when u hit the enter key)
     if(e.key == "Enter"){
    	// when the user hits enter, let's create a popup w/the current text value in the input field
-     alert( userInput.value )
+    socket.emit('apiReq',userInput.value)
    }
 })
 
