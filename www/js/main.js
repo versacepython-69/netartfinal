@@ -7,17 +7,18 @@ const socket = io()
 
 //NEED TO CHANGE console.log(congressMem);
 
-var camera, scene, renderer, mesh, material, controls;
+var camera, scene, renderer, mesh, material;
 init();
 animate();
-angry();
-fear();
-joy();
-sadness();
-anylitical();
-confident();
-tentative();
-render();
+//angry();
+//fear();
+//joy();
+//anylitical();
+//confident();
+//tentative();
+//render();
+onWindowResize();
+
 
 //HOW DO I LINK THESE FUNCTIONS UP TO THE MOST REACTED TO EMOTION FROM TONE ANALYZER, THINK I NEED AND "IF THEN"
 //ANGRY FUNCTION WOULD JUST B COPY PASTED FOR EACH EMOTION I THINK
@@ -51,7 +52,7 @@ function init() {
 
     // Create camera.
     camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 1, 5000);
-    camera.position.y = -200;
+    camera.position.z = 50;
 
 
     // Add controls I DONT KNOW THAT WE NEED THIS
@@ -61,6 +62,11 @@ function init() {
     // Create scene.
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff );
+
+    var geometry = new THREE.SphereGeometry(10,50,50);
+    var material = new THREE.MeshLambertMaterial({color:0xf06d27});
+    mesh  = new THREE.Mesh(geometry, material);
+    scene.add( mesh )
 
     // Create ambient light and add to scene. I WANT TO CHANGE THIS WITH THE MOOD READER
     //var angryLight = new THREE.AmbientLight(0xbb6464); // reddish light
@@ -77,12 +83,12 @@ function init() {
 
 function animate() {
     requestAnimationFrame(animate);
-
+    renderer.render(scene, camera);
 }
 
-function render() {
-	renderer.render(scene, camera);
-}
+//function render() {
+	//renderer.render(scene, camera);
+//}
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
