@@ -110,5 +110,18 @@ userInput.addEventListener('keypress',function(e){
 
 socket.on('apiRes', function(json){
     //change color based on json recieved^^
-    console.log(json)
+    json = JSON.parse(json)
+    let tones = json.document_tone.tones
+
+    let highestTone= {
+        toneId:'empty',
+        tone_name:'empty',
+        score:0
+    }
+        for (var i = 0; i< tones.length; i++){
+            if( tones[i].score >highestTone.score){
+                highestTone = tones[i]
+            }
+        }
+    console.log(tones)
 })
