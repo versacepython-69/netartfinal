@@ -10,7 +10,7 @@ animate();
 //confident();
 //tentative();
 //render();
-onWindowResize();
+//onWindowResize();
 
 //^took out all unset mood functions for now
 
@@ -71,10 +71,12 @@ function init() {
     //var angryLight = new THREE.AmbientLight(0xbb6464); // reddish light
     //scene.add(angryLight);
 
+//moved the directional light into socket functions
+
     // Create directional light and add to scene. DUNNO IF WE NEED THIS
-    var directionalLight = new THREE.DirectionalLight(0xffffff);
-    directionalLight.position.set(1, 1, 1).normalize();
-    scene.add(directionalLight);
+    //var directionalLight = new THREE.DirectionalLight(0xffffff);
+    //directionalLight.position.set(1, 1, 1).normalize();
+    //scene.add(directionalLight);
 
     // Add listener for window resize.
     window.addEventListener('resize', onWindowResize, false);
@@ -113,6 +115,8 @@ socket.on('apiRes', function(json){
     json = JSON.parse(json)
     let tones = json.document_tone.tones
 
+    var directionalLight = new THREE.DirectionalLight(0xffffff);
+
     let highestTone= {
         toneId:'empty',
         tone_name:'empty',
@@ -129,6 +133,8 @@ socket.on('apiRes', function(json){
 
             } else if( highestTone.tone_id == "fear" ){
                 mesh.material.color.setRGB( 151, 218, 204 )
+                directionalLight.position.set(1, 1, 1).normalize();
+                scene.add(directionalLight);
             } else if( highestTone.tone_id == "joy" ){
                 mesh.material.color.setRGB( 254, 254, 0 )
             } else if( highestTone.tone_id == "analytical" ){
