@@ -58,7 +58,7 @@ function init() {
 
     // Create scene.
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = new THREE.Color( 0x000000 );
 
     var geometry = new THREE.SphereGeometry(10,50,50);
     var material = new THREE.MeshLambertMaterial({color:0xf06d27});
