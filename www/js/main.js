@@ -46,7 +46,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     // Create camera.
-    camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 1, 5000);
+    camera = new THREE.PerspectiveCamera(500, window.innerWidth / window.innerHeight, 1, 5000);
     camera.position.z = 50;
 
     //^changed camera position as it was way off
