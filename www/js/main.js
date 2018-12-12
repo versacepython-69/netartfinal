@@ -46,7 +46,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     // Create camera.
-    camera = new THREE.PerspectiveCamera(1500, window.innerWidth / window.innerHeight, 1, 5000);
+    camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 1, 5000);
     camera.position.z = 50;
 
     //^changed camera position as it was way off
@@ -60,7 +60,7 @@ function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0x000000 );
 
-    var geometry = new THREE.SphereGeometry(40,50,50);
+    var geometry = new THREE.SphereGeometry(12,50,50);
     var material = new THREE.MeshLambertMaterial({color:0xf06d27});
     mesh  = new THREE.Mesh(geometry, material);
     scene.add( mesh )
