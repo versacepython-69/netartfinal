@@ -126,7 +126,7 @@ socket.on('apiRes', function(json){
             }
         }
         if( highestTone.tone_id == "anger" ){
-                mesh.material.color.setRGB( 255, 59, 0 )
+                mesh.material.color.setRGB( 255, 0, 0 )
 
 
             } else if( highestTone.tone_id == "fear" ){
