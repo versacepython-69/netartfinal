@@ -19,6 +19,7 @@ p {
 }
 
 #userText {
+  background-color: 000000;
   font-family:sans-serif;
   font-size:50px;
   color:#e40477;
