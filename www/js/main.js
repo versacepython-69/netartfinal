@@ -123,5 +123,20 @@ socket.on('apiRes', function(json){
                 highestTone = tones[i]
             }
         }
-    console.log(tones)
+        if( highestTone.tone_id == "anger" ){
+                mesh.material.color.setRGB( 255, 59, 0 )
+
+
+            } else if( highestTone.tone_id == "fear" ){
+                mesh.material.color.setRGB( 151, 218, 204 )
+            } else if( highestTone.tone_id == "joy" ){
+                mesh.material.color.setRGB( 254, 254, 0 )
+            } else if( highestTone.tone_id == "analytical" ){
+                mesh.material.color.setRGB( 0, 254, 0 )
+            } else if( highestTone.tone_id == "confident" ){
+                mesh.material.color.setRGB( 255, 0, 255 )
+            } else if( highestTone.tone_id == "tentative" ){
+                mesh.material.color.setRGB( 254, 254, 254 )
+}
+
 })
